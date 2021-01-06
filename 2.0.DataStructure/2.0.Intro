@@ -1,0 +1,15 @@
+What do data structures do?
+    They are collections of values, the relationships among them, and 
+    the functions or operations that can be applied to the data.
+
+Working with map/location data? 
+    Graph
+
+Need an ordered list with fast inserts/removals at the beginning and end?
+    Linked list 
+
+Web scraping nested HTML?
+    Tree
+
+Need to write a scheduler? Handles priorities. 
+    Binary heap

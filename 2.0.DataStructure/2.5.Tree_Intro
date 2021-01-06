@@ -1,0 +1,39 @@
+Tree - has a parent/child relationship
+
+Terminology:
+Root: the top node in a tree
+Child: a node directly connected to another node when moving away from the Root
+Parent: the converse notion of a child
+Siblings: a group of nodes with the same parent
+Leaf: a node with no children
+Edge: the connection between one node and another
+
+Differences:
+List - linear
+Tree - nonlinear data structure that contain a root and child nodes
+
+Tree applications:
+HTML DOM, JSON, network routing, abstract syntax tree, artificial intelligence, folders in operating systems, computer file systems..
+
+Kinds of trees:
+Binary Trees, B-trees, Heaps, Trees, Multiway trees, Space-partitioning trees, Application-specific trees
+
+Breadth First or Depth First ??
+- If you have a very wide tree, BFS will have to keep track of a lot of nodes waiting to be visited(queue);
+while DFS only need to keep track of its left/right branch.
+
+- If you have a completely one-sided very long tree, BFS only need to store 1 node at a time (because there's only one node at each level);
+while DFS will have to keep track of tons of levels as it goes down to the leaf.
+
+- Summary: BFS uses less memory if the tree is skinny and long; DFS uses less memory if the tree is wide and short
+
+
+Depth First on a binary tree:
+- InOrder: its side effect is it returns values in ascending order (sorted)
+- PreOrder: can be used to 'export' a tree structure so that it is easily reconstructed or copied (flatten)
+
+
+RECAP
+Binary trees are special trees, can have value of any types but AT MOST TWO children for each parent
+Binary search trees are a more specific version of binary trees where every node to the LEFT of a parent is LESS THAN it's value, and every node to the RIGHT is GREATER (ordered, sorted)
+We can search through Tress using BFS and DFS
