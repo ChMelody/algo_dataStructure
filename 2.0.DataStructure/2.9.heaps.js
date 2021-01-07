@@ -51,9 +51,16 @@ class MaxBinaryHeap {
         // Remove the first element (root) from the values property and replace with the most recently added (the last element)
         const max = this.values[0];
         const end = this.values.pop();
-        this.values[0] = end;
-        // Down-heap to find the correct spot for the 'new' root
-        this.downHeap();
+
+        // EDGE CASE: if this.value only had 1 element, which already pop(), the job is done here, only need to return what was removed
+        
+        // Only run this if there are elements in this.values to work with
+        if(this.values.length > 0){
+            this.values[0] = end;
+            // Down-heap to find the correct spot for the 'new' root
+            this.downHeap();
+        }
+        // Return what was removed
         return max;
     }
 
@@ -101,4 +108,4 @@ console.log(heap.insert(23), heap)  // { values: [ 30, 19, 23 ] }
 console.log(heap.insert(40), heap)  // { values: [ 40, 30, 23, 19 ] }
 console.log(heap.insert(10), heap)  // { values: [ 40, 30, 23, 19, 10 ] }
 console.log(heap.insert(2), heap)  // { values: [ 40, 30, 23, 19, 10, 21 ] }
-// console.log(heap.extractMax(), heap)  // { values: [ 40, 30, 23, 19, 10, 21 ] }
+console.log(heap.extractMax(), heap)  // { values: [ 40, 30, 23, 19, 10, 21 ] }
