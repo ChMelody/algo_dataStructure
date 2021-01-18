@@ -1,7 +1,5 @@
-// Dijkstra's Algorithm
-// It works upon graphs, and uses priority queue & heaps to search
-// Implement a Weighted graph
-
+// Weighted graph
+// everything before this are unweighted graphs
 class WeightedGraph{
     constructor(){
         this.adjacencyList = {};
@@ -31,11 +29,18 @@ let graph = new WeightedGraph();
 graph.addVertex("A");
 graph.addVertex("B");
 graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
 
-graph.addEdge("A", "B", 9);
-graph.addEdge("A", "C", 5);
-graph.addEdge("B", "C", 7);
-
+graph.addEdge("A", "B", 4);
+graph.addEdge("A", "C", 2);
+graph.addEdge("B", "E", 3);
+graph.addEdge("C", "D", 2);
+graph.addEdge("C", "F", 4);
+graph.addEdge("D", "E", 3);
+graph.addEdge("D", "F", 1);
+graph.addEdge("E", "F", 1);
 
 console.log("A: ", graph.adjacencyList["A"]);
 console.log("B: ", graph.adjacencyList["B"]);
