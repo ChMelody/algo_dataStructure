@@ -42,18 +42,85 @@ class WeightedGraph{
     }
 
     Dijkstra(start, finish){
-        const nodes = new PriorityQueue();
-        const distances = {};
-        const previous = {}; 
+        const nodes = new PriorityQueue();  
+        const distances = {};  
+        const previous = {};  // {A: null, B: null, C: null,...}
+        let smallest; 
 
-        // Build up initial state
-        for(let vertex of this.adjacencyList){
+        // Build up initial state, this is what the adjacencyList looks like: 
+        // {
+        //     A: [ { node: 'B', weight: 4 }, { node: 'C', weight: 2 } ],
+        //     B: [ { node: 'A', weight: 4 }, { node: 'E', weight: 3 } ],
+        //     C: [
+        //       { node: 'A', weight: 2 },
+        //       { node: 'D', weight: 2 },
+        //       { node: 'F', weight: 4 }
+        //     ],
+        //     D: [
+        //       { node: 'C', weight: 2 },
+        //       { node: 'E', weight: 3 },
+        //       { node: 'F', weight: 1 }
+        //     ],
+        //     E: [
+        //       { node: 'B', weight: 3 },
+        //       { node: 'D', weight: 3 },
+        //       { node: 'F', weight: 1 }
+        //     ],
+        //     F: [
+        //       { node: 'C', weight: 4 },
+        //       { node: 'D', weight: 1 },
+        //       { node: 'E', weight: 1 }
+        //     ]
+        //   }
+        for(let vertex in this.adjacencyList){
             if(vertex === start){
                 distances[vertex] = 0;
+                nodes.enqueue(vertex, 0);
             } else {
                 distances[vertex] = Infinity; 
+                nodes.enqueue(vertex, Infinity); 
+            }
+            previous[vertex] = null; 
+        }
+
+        // This is what nodes:
+        //  {values: [
+        //       { val: 'A', priority: 0 },
+        //       { val: 'B', priority: Infinity },
+        //       { val: 'C', priority: Infinity },
+        //       { val: 'D', priority: Infinity },
+        //       { val: 'E', priority: Infinity },
+        //       { val: 'F', priority: Infinity }
+        //   ]}
+          
+        // as long as there is somethin to visit
+        while(nodes.values.length){
+            //  current node = A: [ { node: 'B', weight: 4 }, { node: 'C', weight: 2 } ]
+            smallest = nodes.dequeue().val;    // "A", nodes.dequeue() will return the entire object, but we only need the value
+            if(smallest === finish) {
+                console.log('distances', distances);
+                console.log('prev', previous)
+                // WE ARE DONE
+                // Build up the path to return at end
+            }
+
+            // Loop all of its neighbors
+            if(smallest || distances[smallest] !== Infinity){
+                for(let neighbor of this.adjacencyList[smallest]){
+                    // this.adjacencyList['A'] = { node: 'B', weight: 4 }, { node: 'C', weight: 2 } ]
+                    let tempWeight = distances[smallest] + neighbor.weight; // 0 + 4
+                    let neighborNode = neighbor.node; // 'B'
+               
+                    //                 distances['B']
+                    if(candidate < distances[neighborNode]){   // 4
+                        distances[neighborNode] = tempWeight; 
+                        previous[neighborNode] = smallest;
+                        nodes.enqueue(neighborNode, tempWeight); 
+                    }
+                }
             }
         }
+        
     }
 }
 
@@ -82,13 +149,16 @@ graph.addEdge("D", "E", 3);
 graph.addEdge("D", "F", 1);
 graph.addEdge("E", "F", 1);
 
-console.log(graph.adjacencyList);  
+// console.log(graph.adjacencyList);  
+graph.Dijkstra("A", "E"); 
 
-let q = new PriorityQueue();
-q.enqueue("D", 30);
-q.enqueue("B", 7);
-q.enqueue("C", 25);
-q.enqueue("Q", 1.5);
+
+
+// let q = new PriorityQueue();
+// q.enqueue("D", 30);
+// q.enqueue("B", 7);
+// q.enqueue("C", 25);
+// q.enqueue("Q", 1.5);
 
 // q.dequeue(); // Will dequeue the first item from queue which also is the smallest priority
 
