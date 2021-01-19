@@ -21,4 +21,11 @@
     2.5 Intro to Tree
     2.6 Binary Search Tree
     2.7 Breadth First Search
-    2.8. Depth First Search
+    2.8 Depth First Search
+    2.9 Heaps
+    2.10 Priority Queues
+    2.11 Hash Tables
+    2.12 Graphs
+    2.13 Weighted Graphs
+    2.14 Dijkstra's Algorithm
+    Dynamic Programming
