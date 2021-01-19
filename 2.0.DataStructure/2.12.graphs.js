@@ -1,4 +1,5 @@
 // In order to create an adjacency list, we have to creat an empty list first
+
 // Add a vertex first before adding an edge
 class Graph {
     constructor(){
